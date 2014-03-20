@@ -751,9 +751,24 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    // we could have simply not implemented this, but we choose to call super to make explicit that we
-    // want the default behavior.
+	//maybe the frontViewController has a suggestion about rotation.
+	if( self.frontViewController ) {
+		return [self.frontViewController supportedInterfaceOrientations];
+	}
+	else {
     return [super supportedInterfaceOrientations];
+	}
+}
+
+-(BOOL)shouldAutorotate
+{
+	//maybe the frontViewController has a suggestion about rotation.
+	if( self.frontViewController ) {
+		return [self.frontViewController shouldAutorotate];
+	}
+	else {
+    return [super shouldAutorotate];
+	}
 }
 
 //// Support for earlier than iOS 6.0
