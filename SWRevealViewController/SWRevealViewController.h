@@ -142,8 +142,14 @@ typedef enum
 
 @interface SWRevealViewController : UIViewController
 
+
 // Object instance init and rear view setting
 - (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController;
+
+- (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController overlayViewController:(UIViewController *)overlayViewController;
+
+@property (strong, nonatomic) UIViewController *overlayViewController;
+-(void)setOverlayViewController:(UIViewController *)overlayViewController animated:(BOOL)animated;
 
 // Rear view controller, can be nil if not used
 @property (strong, nonatomic) UIViewController *rearViewController;

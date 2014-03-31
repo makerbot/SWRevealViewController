@@ -31,6 +31,7 @@
 #import "FrontViewController.h"
 #import "RearViewController.h"
 #import "RightViewController.h"
+#import "OverlayViewController.h"
 #import "CustomAnimationController.h"
 
 @interface AppDelegate()<SWRevealViewControllerDelegate>
@@ -48,11 +49,12 @@
 	
 	FrontViewController *frontViewController = [[FrontViewController alloc] init];
 	RearViewController *rearViewController = [[RearViewController alloc] init];
-	
+	OverlayViewController *overlayViewController = [[OverlayViewController alloc]init];
+	overlayViewController.view.center = CGPointMake(160, 160);
 	UINavigationController *frontNavigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];
     UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
 	
-	SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNavigationController frontViewController:frontNavigationController];
+	SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNavigationController frontViewController:frontNavigationController overlayViewController:overlayViewController];
     revealController.delegate = self;
     
     

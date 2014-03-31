@@ -562,6 +562,14 @@ const int FrontViewPositionNone = 0xff;
     return self;
 }
 
+- (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController overlayViewController:(UIViewController *)overlayViewController
+{
+	self = [self initWithRearViewController:rearViewController frontViewController:frontViewController];
+	if( self ) {
+		[self setOverlayViewController:overlayViewController animated:NO];
+	}
+	return self;
+}
 
 - (void)_initDefaultProperties
 {
@@ -781,6 +789,13 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 
 
 #pragma mark - Public methods and property accessors
+
+-(void)setOverlayViewController:(UIViewController *)overlayViewController animated:(BOOL)animated
+{
+	[self addChildViewController:overlayViewController];
+	[self.view addSubview:overlayViewController.view];
+	[overlayViewController didMoveToParentViewController:self];
+}
 
 - (void)setFrontViewController:(UIViewController *)frontViewController
 {
