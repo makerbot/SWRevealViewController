@@ -168,14 +168,19 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
         frontViewLayer.masksToBounds = NO;
         frontViewLayer.shadowColor = [UIColor blackColor].CGColor;
         //frontViewLayer.shadowOpacity = 1.0f;
-        frontViewLayer.shadowOpacity = _c.frontViewShadowOpacity;
-        frontViewLayer.shadowOffset = _c.frontViewShadowOffset;
-        frontViewLayer.shadowRadius = _c.frontViewShadowRadius;
+			[self updateShadow];
     }
     
     return self;
 }
 
+-(void)updateShadow
+{
+	CALayer *frontViewLayer = _frontView.layer;
+	frontViewLayer.shadowOpacity = _c.frontViewShadowOpacity;
+	frontViewLayer.shadowOffset = _c.frontViewShadowOffset;
+	frontViewLayer.shadowRadius = _c.frontViewShadowRadius;
+}
 
 - (CGRect)hierarchycalFrameAdjustment:(CGRect)frame
 {
@@ -731,6 +736,11 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self _setFrontViewPosition:initialPosition withDuration:0.0];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[_contentView updateShadow];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
