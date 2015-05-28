@@ -584,8 +584,14 @@ const int FrontViewPositionNone = 0xff;
     _rearViewRevealWidth = 260.0f;
     _rearViewRevealOverdraw = 60.0f;
     _rearViewRevealDisplacement = 40.0f;
-    _rightViewRevealWidth = 260.0f;
-    _rightViewRevealOverdraw = 60.0f;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        _rightViewRevealWidth = 320.0f;
+        _rightViewRevealOverdraw = 60.0f;
+    }else{
+        _rightViewRevealWidth = 260.0f;
+        _rightViewRevealOverdraw = 60.0f;
+    }
+    
     _rightViewRevealDisplacement = 40.0f;
     _bounceBackOnOverdraw = YES;
     _bounceBackOnLeftOverdraw = YES;
